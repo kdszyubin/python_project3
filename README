@@ -1,0 +1,10 @@
+初步实现1 test.py：输出每个h1标签的内容
+初步实现2 pagemaker.py：对每个page标签输出一个文件
+实现3     website.py：对每个page标签输出一个文件，并对每个directory建一个文件夹，对除website之外的标签直接输出
+    使用xml.sax.handler.ContentHandler xml.sax.parse os
+         实现包含一个handler基类，继承xml.sax.handler.ContentHandler
+            startElement(self, name, attrs)
+            endElement(self, name)
+            callback(self, prefix, name, attrs == None)
+          一个XMLHandler继承基类，包含对每个标签的具体实现
+    通过xml.sax.parse使用XMLHandler，parse每碰到一个标签即调用startElement，并将标签属性给attrs（继承dict），startElement通过callback调用XMLHandler里面的具体实现；XMLHandler包含一布尔变量passthrough，表示是否正处于以page中
